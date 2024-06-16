@@ -87,9 +87,17 @@ public class GraphAL<D> implements Graph<D> {
 		this.n++;
 		return v;
 	 }
-
+	 public void addEdge(Edge<D> e) {
+		LinkedList<Edge<D>> l = vertexes.get(((VertexAL<D>)e.source).index).adjac;
+		l.add(e);
+		LinkedList<Edge<D>> r = vertexes.get(((VertexAL<D>)e.dest).index).adjac;
+		WeightedEdge<D> tmp = new WeightedEdge<D>(e.dest, e.source, ((WeightedEdge<D>)e).weight);
+		r.add(tmp);
+		this.m =this.m+2;
+	}
+	/*
 	public void addEdge(Edge<D> e) {
-		/*
+		
 		if(this.vertexes.contains(e.source)){
 			
 			//int index = this.vertexes.indexOf();
@@ -98,12 +106,12 @@ public class GraphAL<D> implements Graph<D> {
 			//System.out.println(this.vertexes.get(index).adjac.size());
 			this.m++;
 		}
-		*/
+		
 		LinkedList<Edge<D>> l = vertexes.get(((VertexAL<D>)e.source).index).adjac;
 		l.add(e);
 		this.m++;
 		return;
-	}
+	}*/
 	
 	public void removeVertex(Vertex<D> v) {
 		VertexAL<D> vAL = (VertexAL<D>)v;
@@ -129,7 +137,20 @@ public class GraphAL<D> implements Graph<D> {
 		}
 	}
 
-	public void removeEdge(Edge<D> e) { }
+	public void removeEdge(Edge<D> e) {
+		int index = this.vertexes.indexOf((VertexAL<D>)e.source);
+		if(index!=-1){
+			if(this.vertexes.get(index).adjac.remove(e)){
+				this.m = this.m - 1;
+			}
+		}
+		index = this.vertexes.indexOf((VertexAL<D>)e.dest);
+		if(index!=-1){
+			if(this.vertexes.get(index).adjac.remove(e)){
+				this.m = this.m -1;
+			}
+		}
+	}
 
 	/**
 	 *  Returns the index of a vertex
