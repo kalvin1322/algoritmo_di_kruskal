@@ -1,11 +1,10 @@
 package src.algorithm.MST;
 
 import java.lang.reflect.Array;
-
 import src.algorithm.sorting.Sorting;
 import src.datastructure.graph.*;
 import src.datastructure.unionfind.*;
-
+import java.util.*;
 /**
  * This class contains the implementation of the Kruskal's algorithm for the construction of a Minimum Spanning Tree (MST) of a weighted graph.
  * 
@@ -25,25 +24,39 @@ public class Kruskal<D> implements MST<D> {
 	 * @param g the weighted graph
 	 */
     public void compute(WeightedGraph<D> g) {
+		 
+		this.t = new WeightedGraphAL<D>();
+		this.weight = 0;
 		QuickUnionRank<Vertex<D>> UF = new QuickUnionRank<>();
+		HashMap<D,QUnode<Vertex<D>>> hasUF = new HashMap<>();
+		 for(int i=0;i<g.vertexNum();i++){
+			 
+			//System.err.println("union find"+g.vertexes().get(i).data);
+			hasUF.put(g.vertexes().get(i).data, UF.makeSet(g.vertexes().get(i)));
+			this.t.addVertex(g.vertexes().get(i).data);
+			//System.err.println("weight graph"+this.t.vertexes().get(i).data);
+		 }
+		 WeightedEdge<D>[] tmp = g.edges().toArray(new WeightedEdge [g.edgeNum()]);
+		 Sorting.mergesort(tmp);
+		 
+		  
+		  for(int i=0;i<g.edgeNum();i++){
+				//System.out.println(hasUF.get(i));
+			  QURset Tu = (QURset) UF.find(hasUF.get(g.edges().get(i).source.data));
+			  QURset Tv = (QURset) UF.find(hasUF.get(g.edges().get(i).dest.data));
+			  
+			  if(!Tu.equals(Tv)){
+					
+				  this.t.addEdge(g.edges().get(i));
+				  this.weight+=((WeightedEdge<D>)g.edges().get(i)).weight;
+				  UF.union(Tu, Tv);
+				  
+			  }
+		  }
 		
-		for(int i=0;i<g.vertexNum();i++){
-			UF.makeSet(this.t.vertexes().get(i));
-		}
-		this.t.edges().get(0);
-		WeightedEdge<D>[] tmp = g.edges().toArray(new WeightedEdge [g.edgeNum()]);
-		Sorting.mergesort(tmp);
-		for(int i=0;i<g.edgeNum();i++){
-			QURset Tu = (QURset) UF.find(new QUnode<Vertex<D>>(g.edges().get(i).source, null));
-			QURset Tv = (QURset) UF.find(new QUnode<Vertex<D>>(g.edges().get(i).dest, null));
-			if(!Tu.equals(Tv)){
-				this.t.addEdge(g.edges().get(i));
-				this.weight+=((WeightedEdge<D>)g.edges().get(i)).weight;
-				UF.union(Tu, Tv);
-			}
-		}
+	
 		
-		
+
 		
     }
 	

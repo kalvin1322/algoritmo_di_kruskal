@@ -89,14 +89,18 @@ public class ProjectTest {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             
             WeightedGraph<Integer> t = mst.spanningTree();
-
+            
             ArrayList<Vertex<Integer>> vert = t.vertexes();
+           
 			for (int i=0; i<t.vertexNum(); i++) {
+                
                 bw.write("Adiacenti a: "+(vert.get(i)).data);
                 ArrayList<Edge<Integer>> archi = t.outEdges(vert.get(i));
+                
+                System.out.println(g.outDegree(vert.get(i)));
                 for (int j=0; j<g.outDegree(vert.get(i)); j++) {
                     bw.write( "  "+ ((archi.get(j)).dest).data+" "+
-                        ((WeightedEdge)(archi.get(j))).weight );
+                        ((WeightedEdge)(archi.get(j))).weight);
                 }
                 bw.newLine();
             }

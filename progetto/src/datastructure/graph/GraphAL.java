@@ -55,20 +55,17 @@ public class GraphAL<D> implements Graph<D> {
 		}
 
 	public int outDegree(Vertex<D> v) {	
-		int tmp = this.vertexes.indexOf(v);
-		return this.vertexes.get(tmp).adjac.size();
-	}
+		VertexAL<D> tmp = (VertexAL<D>) v;
+		return tmp.adjac.size();
+	}	
 	
 	public ArrayList<Edge<D>> outEdges(Vertex<D> v) { 
-		ArrayList<Edge<D>> l = new ArrayList<>();
-		int index = this.vertexes.indexOf(v);
-		if(index!=-1){
-			l.addAll(this.vertexes.get(index).adjac);
-			return l;
-			
-		}else{
-			return null;
-		}
+		ArrayList<Edge<D>> List = new ArrayList<>();
+        Iterator<Edge<D>> iter = ((VertexAL<D>) v).adjac.iterator();
+        while(iter.hasNext()){
+            List.add(iter.next());
+        }
+        return List;
 	}
 	
 	public Edge<D> areAdjacent(Vertex<D> x, Vertex<D> y) {
