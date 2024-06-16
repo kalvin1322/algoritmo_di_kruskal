@@ -96,7 +96,7 @@ public class ProjectTest {
                 
                 bw.write("Adiacenti a: "+(vert.get(i)).data);
                 ArrayList<Edge<Integer>> archi = t.outEdges(vert.get(i));
-                System.out.println(vert.get(i).data);
+                
                 for (int j=0; j<g.outDegree(vert.get(i)); j++) {
                     bw.write( "  "+ ((archi.get(j)).dest).data+" "+
                         ((WeightedEdge)(archi.get(j))).weight);

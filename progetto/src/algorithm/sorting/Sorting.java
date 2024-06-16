@@ -23,7 +23,19 @@ public class Sorting {
 	 * @param <T> class of the object in the array
 	 */
 	public static <T extends Comparable<T>> void selectionsort(T A[]) {
-
+		for(int i=0; i<A.length;i++){
+			int m = i;
+			for(int j=i; j<A.length;j++){
+				if(A[i].compareTo(A[j])<0){
+					m=j;
+				}
+			}
+			if(m!=i){
+				T tmp=A[i];
+				A[i]=A[m];
+				A[m]=tmp;
+			}
+		}
 	}
 
 
@@ -37,9 +49,7 @@ public class Sorting {
 	 * </ul>
 	 * @param A the array to be sorted
 	 */
-	public static void selectionsort(int A[]) {
-
-	}
+	
 
 	/**
 	 * Sorts the specified array according to the ordering induced by the compareTo() method in O(n<sup>2</sup>)

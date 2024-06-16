@@ -69,20 +69,13 @@ public class GraphAL<D> implements Graph<D> {
 	}
 	
 	public Edge<D> areAdjacent(Vertex<D> x, Vertex<D> y) {
-		/*int index = this.vertexes.indexOf(x);
+		int index = this.vertexes.indexOf(x);
 		if(index!=-1){
 			if(this.vertexes.get(index).adjac.contains(y)){
 				return this.vertexes.get(index).adjac.get(this.vertexes.get(index).adjac.indexOf(y));
 			}
 			else{
 				return null;
-			}
-		}
-		return null;*/
-		ArrayList<Edge<D>> edge = this.outEdges(x);
-		for(int i=0; i<edge.size();i++){
-			if(edge.get(i).dest == y){
-				return edge.get(i);
 			}
 		}
 		return null;
@@ -96,12 +89,12 @@ public class GraphAL<D> implements Graph<D> {
 	 }
 
 	public void addEdge(Edge<D> e) {
-		/*	
+		/*
 		if(this.vertexes.contains(e.source)){
 			
-			int index = this.vertexes.indexOf(e.source);
+			//int index = this.vertexes.indexOf();
 			//System.out.println(this.vertexes.get(index).adjac.size());
-			this.vertexes.get(index).adjac.add(e);
+			this.vertexes.get(((VertexAL<D>)e.source).index).adjac.add(e);
 			//System.out.println(this.vertexes.get(index).adjac.size());
 			this.m++;
 		}
