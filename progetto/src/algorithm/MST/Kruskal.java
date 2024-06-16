@@ -38,15 +38,12 @@ public class Kruskal<D> implements MST<D> {
 		 }
 		 WeightedEdge<D>[] tmp = g.edges().toArray(new WeightedEdge [g.edgeNum()]);
 		 Sorting.mergesort(tmp);
-		 
-		  
 		  for(int i=0;i<g.edgeNum();i++){
 				//System.out.println(hasUF.get(i));
 			  QURset Tu = (QURset) UF.find(hasUF.get(g.edges().get(i).source.data));
 			  QURset Tv = (QURset) UF.find(hasUF.get(g.edges().get(i).dest.data));
 			  
 			  if(!Tu.equals(Tv)){
-					
 				  this.t.addEdge(g.edges().get(i));
 				  this.weight+=((WeightedEdge<D>)g.edges().get(i)).weight;
 				  UF.union(Tu, Tv);
