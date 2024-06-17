@@ -58,9 +58,9 @@ public class Kruskal<D> implements MST<D> {
 				  this.t.addEdge(g.edges().get(g.edges().indexOf(tmp[i])));
 				  this.weight+=((WeightedEdge<D>)g.edges().get(g.edges().indexOf(tmp[i]))).weight;
 				  UF.union(Tu, Tv);
-				}
 			}
-	
+			}
+		}
 	/**
 	 * Returns the Minimum Spanning Tree (MST) of the weighted graph.
 	 * 
