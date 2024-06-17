@@ -95,23 +95,7 @@ public class GraphAL<D> implements Graph<D> {
 		r.add(tmp);
 		this.m =this.m+2;
 	}
-	/*
-	public void addEdge(Edge<D> e) {
-		
-		if(this.vertexes.contains(e.source)){
-			
-			//int index = this.vertexes.indexOf();
-			//System.out.println(this.vertexes.get(index).adjac.size());
-			this.vertexes.get(((VertexAL<D>)e.source).index).adjac.add(e);
-			//System.out.println(this.vertexes.get(index).adjac.size());
-			this.m++;
-		}
-		
-		LinkedList<Edge<D>> l = vertexes.get(((VertexAL<D>)e.source).index).adjac;
-		l.add(e);
-		this.m++;
-		return;
-	}*/
+	
 	
 	public void removeVertex(Vertex<D> v) {
 		VertexAL<D> vAL = (VertexAL<D>)v;

@@ -30,17 +30,14 @@ public class Kruskal<D> implements MST<D> {
 		QuickUnionRank<Vertex<D>> UF = new QuickUnionRank<>();
 		HashMap<D,QUnode<Vertex<D>>> hasUF = new HashMap<>();
 		 for(int i=0;i<g.vertexNum();i++){
-			 
-			//System.err.println("union find"+g.vertexes().get(i).data);
 			hasUF.put(g.vertexes().get(i).data, UF.makeSet(g.vertexes().get(i)));
 			this.t.addVertex(g.vertexes().get(i).data);
-			//System.err.println("weight graph"+this.t.vertexes().get(i).data);
+			
 		 }
 		 WeightedEdge<D>[] tmp = g.edges().toArray(new WeightedEdge [g.edgeNum()]);
 		 Sorting.mergesort(tmp);
 		
 		  for(int i=0;i<g.edgeNum();i++){
-				//System.out.println(hasUF.get(i));
 			  QURset Tu = (QURset) UF.find(hasUF.get(tmp[i].source.data));
 			  QURset Tv = (QURset) UF.find(hasUF.get(tmp[i].dest.data));
 			  if(!Tu.equals(Tv)){
